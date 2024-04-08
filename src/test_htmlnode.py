@@ -1,5 +1,6 @@
 import unittest
-from htmlnode import HTMLNODE
+from htmlnode import HTMLNODE, LeafNode
+
 
 class TestHTMLNODE(unittest.TestCase):
 	def test_repr(self):
@@ -18,6 +19,13 @@ class TestHTMLNODE(unittest.TestCase):
 		node = HTMLNODE("This is a text node", "bold")
 		self.assertEqual(node.props_to_html(), "")
     
+	def test_to_html_no_children(self):
+		node = LeafNode("h1", "This is a header")
+		self.assertEqual(node.to_html(), "<h1 >This is a header</h1>")
+
+	def test_to_html_no_tag(self):
+		node = LeafNode(None, "This is a header")
+		self.assertEqual(node.to_html(), "This is a header")
 
 
 if __name__ == "__main__":

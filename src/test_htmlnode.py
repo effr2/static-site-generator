@@ -33,15 +33,15 @@ class TestLeafNode(unittest.TestCase):
 
 class TestParentNode(unittest.TestCase):
 	def test_to_html_no_tag(self):
-		node = ParentNode([LeafNode("h1", "This is a header")])
+		node = ParentNode(None, [LeafNode("h1", "This is a header")])
 		self.assertRaises(ValueError, node.to_html)
 	
 	def test_to_html_no_children(self):
-		node = ParentNode(None, "div")
+		node = ParentNode("div", None)
 		self.assertRaises(ValueError, node.to_html)
 	
 	def test_to_html(self):
-		node = ParentNode([LeafNode("h1", "This is a header")], "div")
+		node = ParentNode("div", [LeafNode("h1", "This is a header")])
 		self.assertEqual(node.to_html(), "<div><h1>This is a header</h1></div>")
 
 
